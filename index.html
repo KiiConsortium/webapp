@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Kii consortium</title>
+  <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+</head>
+<body>
+  <input id="menu-checkbox" type="checkbox"/>
+  <nav id="menu"></nav>
+  <label for="menu-checkbox" id="overlay"></label>
+  <section id="header"></section>
+  <section id="container">
+    <section id="loading">
+      <label>Loading...</label>
+    </section>
+  </section>
+  <section id="snack"></section>
+
+  <script id="headerTemplate" type="text/ractive">
+    {{#if navDrawerEnabled}}
+    <!--
+    <label for="menu-checkbox" id="menu-button">&#8801;</label>
+    -->
+    <label for="menu-checkbox"><img src="./img/menu.png" id="menu-button"/></label>
+    {{/if}}
+    {{#if showBackButton}}
+    <img src="./img/arrow_back.png" id="menu-button" on-click="back"/>
+    {{/if}}
+    <h1 class="title">{{title}}</h1>
+  </script>
+
+  <script id="drawerTemplate" type="text/ractive">
+    <section class="user-info">
+      <img class="thumbnail" src="{{account.thumbnailUrl}}"/>
+    </section>
+    <ul id="menu-list">
+    {{#menuItems:i}}
+      <li on-click="menuClicked:{{i}}">{{.}}</li>
+    {{/}}
+    </ul>
+    <hr/>
+    <ul id="menu-list">
+    {{#companyList}}
+      <li on-click="companyClicked:{{.}}">{{name}}</li>
+    {{/}}
+    </ul>
+    <hr/>
+    <button class="button-logout" on-click="logout">Log out</button>
+  </script>
+
+  <script id="snackTemplate" type="text/ractive">
+    {{#if msgList.length > 0}}
+    <ul>
+      {{#msgList:i}}
+      <li>{{.}}</li>
+      {{/}}
+    </ul>
+    {{/if}}
+  </script>
+
+  <script id="TopTemplate" type="text/ractive">
+    <section class="loginForm">
+      <div class="form-item"><label>Email</label><input type="text" value="{{email}}"></div>
+      <div class="form-item"><label>Password</label><input type="password" value="{{password}}"><br/></div>
+      <p class="button-primary" on-click="login">Log in<p/>
+    </section>
+  </script>
+
+  <script id="ConferenceListTemplate" type="text/ractive">
+    <ul class="conference">
+    {{#list}}
+      <li>
+        <h2>{{title}}</h2>
+        <p>{{dateLabel}}</p>
+        <p>場所：{{place}}</p>
+        <p>{{description}}</p></li>
+    {{/}}
+    </ul>
+  </script>
+
+  <script id="CompanyListTemplate" type="text/ractive">
+    <table class="companies card-2">
+    <thead>
+      <tr><th class="name-col">Name</th><th>URL</th></tr>
+    </thead>
+    <tbody>
+    {{#list}}
+    <tr on-click="companyClicked:{{.}}"><td>{{name}}</td><td>{{url}}</td></tr>
+    {{/}}
+    </tbody>
+    </table>
+  </script>
+
+  <script id="CompanyDetailTemplate" type="text/ractive">
+    <section class="CompanyDetail card-2">
+      <img class="thumbnail" src="{{company.thumbnailUrl}}"/>
+      <h2 class="name">{{company.name}}</h2>
+      <p class="url">{{company.url}}</p>
+      <p class="desc">{{company.description}}</p>
+    </section>
+
+    <section class="card-2">
+      <h2>Members</h2>
+      <table class="members">
+        <thead>
+          <tr><th class="name-col">Name</th><th>Orgzanization</th></tr>
+        </thead>
+        <tbody>
+          {{#memberList}}
+          <tr on-click="memberClicked:{{.}}"><td>{{name}}</td><td>{{organization}}</td></tr>
+          {{/}}
+        </tbody>
+      </table>
+    </section>
+  </script>
+
+  <script id="MemberListTemplate" type="text/ractive">
+    <table class="members card-2">
+    <thead>
+      <tr><th class="name-col">Name</th><th>Orgzanization</th></tr>
+    </thead>
+    <tbody>
+    {{#list}}
+    <tr on-click="memberClicked:{{.}}"><td>{{name}}</td><td>{{organization}}</td></tr>
+    {{/}}
+    </tbody>
+    </table>
+  </script>
+
+  <script id="MemberDetailTemplate" type="text/ractive">
+    <section class="MemberDetail card-2">
+      <img class="thumbnail" src="{{member.thumbnailUrl}}"/>
+      <div><h2 class="name">{{member.name}}</h2><span class="email">{{member.email}}</span></div>
+      <p class="desc">{{member.description}}</p>
+    </section>
+  </script>
+
+  <!-- Edit feature -->
+  <script id="EditAccountTemplate" type="text/ractive">
+    <section class="EditAccount card-2">
+      <h2>Basic information</h2>
+      <ul>
+        <li><label>Name</label><input type="text" value="{{name}}"/></li>
+        <li><label>Organization</label><input type="text" value="{{organization}}"/></li>
+        <li><label>Thumbnail URL</label><input type="text" value="{{thumbnailUrl}}"/></li>
+        <li><label>Description</label><textarea value="{{description}}"></textarea></li>
+      </ul>
+      <div class="button-submit"><label class="button-primary" on-click="updateBasic">Update</label></div>
+    </section>
+
+    <section class="EditAccount card-2">
+      <h2>Email address</h2>
+      <ul>
+        <li><label>Email</label><input type="text" value="{{newEmail}}"></li>
+      </ul>
+      <div class="button-submit"><label class="button-primary" on-click="updateEmail">Update</label></div>
+    </section>
+
+    <section class="EditAccount card-2">
+      <h2>Change password</h2>
+      <ul>
+        <li><label>Current</label><input type="password" value="{{oldPass}}"/></li>
+        <li><label>New</label><input type="password" value="{{newPass}}"/></li>
+      </ul>
+      <div class="button-submit"><label class="button-primary" on-click="changePassword">Update</label></div>
+    </section>
+  </script>
+
+  <script id="EditCompanyTemplate" type="text/ractive">
+    <section class="EditAccount card-2">
+      <h2>Basic information</h2>
+      <ul>
+        <li><label>Name</label><input type="text" value="{{name}}"/></li>
+        <li><label>URL</label><input type="text" value="{{url}}"/></li>
+        <li><label>Thumbnail URL</label><input type="text" value="{{thumbnailUrl}}"/></li>
+        <li><label>Description</label><textarea value="{{description}}"></textarea></li>
+      </ul>
+      <div class="button-submit"><label class="button-primary" on-click="updateInfo">Update</label></div>
+    </section>
+
+    <section class="EditAccount card-2">
+      <h2>Add member</h2>
+      <ul>
+        <li><label>Name</label><input type="text" value="{{newName}}"/></li>
+        <li><label>Email</label><input type="text" value="{{newEmail}}"/></li>
+        <li><label>Password</label><input type="password" value="{{newPassword}}"/></li>
+      </ul>
+      <div class="button-submit"><label class="button-primary" on-click="addMember">Add</label></div>
+    </section>
+  </script>
+  
+  <script id="" type="text/ractive">
+    <section class="card-2">
+    </section>
+  </script>
+
+  <script src=".js/kiisdk.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ractive/0.7.3/ractive.js"></script>
+  <!-- for backbone.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.9.0.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+  <script src="./js/kiisdk.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+html, body {
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Condensed", sans-serif; }
+
+body {
+  position: relative; }
+
+#header {
+  width: 100%;
+  height: 56px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 8px;
+  padding-left: 8px;
+  z-index: 100;
+  background-color: #f69627;
+  border-bottom: 1px solid #cecece;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26); }
+  #header #menu-button {
+    margin-top: 2px;
+    color: #ffffff; }
+  #header .title {
+    display: inline-block;
+    color: #ffffff;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: top; }
+
+#container {
+  position: absolute;
+  width: 100%;
+  margin-top: 60px; }
+
+#overlay {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101; }
+
+#menu {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  z-index: 102;
+  visibility: hidden;
+  width: 240px;
+  height: 100%;
+  background: #434343;
+  color: white;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+  padding: 10px; }
+  #menu .user-info .thumbnail {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 16px; }
+  #menu .button-logout {
+    display: block;
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 48px;
+    background-color: #f69627;
+    color: #ffffff; }
+
+#menu-list {
+  margin-top: 8px;
+  margin-bottom: 8px; }
+  #menu-list li {
+    min-height: 48px;
+    line-height: 48px;
+    cursor: pointer; }
+    #menu-list li:hover {
+      background-color: #777777; }
+
+#menu-button {
+  background-color: transparent;
+  border: none;
+  color: #222;
+  font-size: 30px;
+  padding-left: 8px;
+  padding-right: 8px;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+#menu-checkbox:checked ~ #overlay {
+  display: block; }
+
+#menu-checkbox:checked ~ #menu {
+  visibility: visible;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+#menu-checkbox:checked ~ #header #three-lines {
+  position: relative;
+  left: -3px; }
+
+/* Snackbar */
+#snack {
+  position: fixed;
+  left: 16px;
+  bottom: 16px; }
+  #snack ul {
+    padding: 4px 8px;
+    list-style: none;
+    background-color: #323232; }
+    #snack ul li {
+      color: #ffffff; }
+
+#loading label {
+  display: block;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; }
+
+/* Common */
+.card-2 {
+  margin: 8px 16px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); }
+
+.button-primary {
+  background-color: #f69627;
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer; }
+
+/* Login form */
+.loginForm {
+  width: 332px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 16px;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); }
+  .loginForm .form-item {
+    margin-top: 8px;
+    margin-bottom: 8px; }
+  .loginForm label {
+    display: inline-block;
+    width: 100px; }
+  .loginForm input {
+    width: 200px; }
+  .loginForm .button-primary {
+    margin-top: 16px; }
+
+/* conference  */
+.conference {
+  margin-left: 16px;
+  margin-right: 16px; }
+  .conference li {
+    display: block;
+    border-bottom: 1px solid #cecece;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26); }
+  .conference h2 {
+    padding: 8px; }
+  .conference p {
+    padding: 8px; }
+
+/* company  */
+.companies {
+  margin-left: 16px;
+  margin-right: 16px;
+  display: block;
+  padding: 8px 16px;
+  border-collapse: collapse; }
+  .companies thead tr {
+    border-bottom: solid 1px #777777; }
+    .companies thead tr th {
+      text-align: left; }
+  .companies tbody tr {
+    border-bottom: solid 1px #f7f7f7;
+    height: 44px; }
+    .companies tbody tr:hover {
+      background-color: #f7f7f7;
+      cursor: pointer; }
+  .companies tbody td {
+    padding-right: 8px; }
+  .companies .name-col {
+    width: 1%; }
+
+/* Company Detail */
+.CompanyDetail {
+  margin: 8px 16px;
+  padding: 8px 16px; }
+  .CompanyDetail .thumbnail {
+    display: block;
+    width: 128px;
+    height: 128px; }
+  .CompanyDetail .url {
+    font-size: small; }
+  .CompanyDetail .desc {
+    margin-top: 16px; }
+
+/* members  */
+.members {
+  display: block;
+  padding: 8px 16px;
+  border-collapse: collapse; }
+  .members thead tr {
+    border-bottom: solid 1px #777777; }
+    .members thead tr th {
+      text-align: left; }
+  .members tbody tr {
+    border-bottom: solid 1px #f7f7f7;
+    height: 44px; }
+    .members tbody tr:hover {
+      background-color: #f7f7f7;
+      cursor: pointer; }
+  .members tbody td {
+    padding-right: 8px; }
+  .members .name-col {
+    width: 1%; }
+
+/* Member Detail */
+.MemberDetail {
+  margin: 16px 16px;
+  padding: 8px 16px; }
+  .MemberDetail .thumbnail {
+    display: block;
+    width: 128px;
+    height: 128px; }
+  .MemberDetail .name {
+    display: inline-block; }
+  .MemberDetail .email {
+    margin-left: 8px;
+    font-size: small; }
+  .MemberDetail .desc {
+    margin-top: 16px; }
+
+/* Edit Account */
+.EditAccount {
+  padding: 8px 16px;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto; }
+  .EditAccount ul {
+    list-style-type: none; }
+  .EditAccount li {
+    min-height: 48px; }
+    .EditAccount li label {
+      display: inline-block;
+      width: 130px; }
+    .EditAccount li input {
+      width: calc(100% - 146px);
+      min-height: 40px; }
+    .EditAccount li textarea {
+      vertical-align: top;
+      width: calc(100% - 146px);
+      height: 64px;
+      resize: none; }
+  .EditAccount .button-submit {
+    width: 100px;
+    margin-left: auto;
+    margin-right: 16px;
+    padding: 8px 16px; }
+    .EditAccount .button-submit label {
+      width: 100%;
+      padding: 8px 16px; }
