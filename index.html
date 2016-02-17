@@ -83,11 +83,11 @@
   <script id="CompanyListTemplate" type="text/ractive">
     <table class="companies card-2">
     <thead>
-      <tr><th class="name-col">Name</th><th>URL</th></tr>
+      <tr><th class="name-col">Name</th><th class="name-col">URL</th><th>Description</th></tr>
     </thead>
     <tbody>
     {{#list}}
-    <tr on-click="companyClicked:{{.}}"><td>{{name}}</td><td>{{url}}</td></tr>
+    <tr on-click="companyClicked:{{.}}"><td>{{name}}</td><td>{{url}}</td><td>{{toShort(description)}}</tr>
     {{/}}
     </tbody>
     </table>
@@ -105,11 +105,11 @@
       <h2>Members</h2>
       <table class="members">
         <thead>
-          <tr><th class="name-col">Name</th><th>Orgzanization</th></tr>
+          <tr><th class="name-col">Name</th><th class="name-col">Orgzanization</th><th>Description</th></tr>
         </thead>
         <tbody>
           {{#memberList}}
-          <tr on-click="memberClicked:{{.}}"><td>{{name}}</td><td>{{organization}}</td></tr>
+          <tr on-click="memberClicked:{{.}}"><td>{{name}}</td><td>{{organization}}</td><td>{{toShort(description)}}</td></tr>
           {{/}}
         </tbody>
       </table>
@@ -119,11 +119,11 @@
   <script id="MemberListTemplate" type="text/ractive">
     <table class="members card-2">
     <thead>
-      <tr><th class="name-col">Name</th><th>Orgzanization</th></tr>
+      <tr><th class="name-col">Name</th><th class="name-col">Orgzanization</th><th>Description</th></tr>
     </thead>
     <tbody>
     {{#list}}
-    <tr on-click="memberClicked:{{.}}"><td>{{name}}</td><td>{{organization}}</td></tr>
+    <tr on-click="memberClicked:{{.}}"><td>{{name}}</td><td>{{organization}}</td><td>{{toShort(description)}}</tr>
     {{/}}
     </tbody>
     </table>

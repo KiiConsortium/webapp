@@ -203,7 +203,8 @@ body {
   .companies tbody td {
     padding-right: 8px; }
   .companies .name-col {
-    width: 1%; }
+    width: 1%;
+    min-width: 100px; }
 
 /* Company Detail */
 .CompanyDetail {
@@ -236,7 +237,8 @@ body {
   .members tbody td {
     padding-right: 8px; }
   .members .name-col {
-    width: 1%; }
+    width: 1%;
+    min-width: 100px; }
 
 /* Member Detail */
 .MemberDetail {
