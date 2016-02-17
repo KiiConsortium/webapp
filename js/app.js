@@ -132,7 +132,15 @@ var CompanyListPage = (function () {
             el: '#container',
             template: '#CompanyListTemplate',
             data: {
-                list: this.list
+                list: this.list,
+                toShort: function (s) {
+                    if (s.length < 20) {
+                        return s;
+                    }
+                    else {
+                        return s.substr(0, 20) + '...';
+                    }
+                }
             }
         });
         this.ractive.on({
@@ -191,7 +199,15 @@ var CompanyDetailPage = (function () {
             template: '#CompanyDetailTemplate',
             data: {
                 company: this.company,
-                memberList: this.company.members
+                memberList: this.company.members,
+                toShort: function (s) {
+                    if (s.length < 20) {
+                        return s;
+                    }
+                    else {
+                        return s.substr(0, 20) + '...';
+                    }
+                }
             }
         });
         this.ractive.on({
@@ -233,7 +249,15 @@ var MemberListPage = (function () {
             el: '#container',
             template: '#MemberListTemplate',
             data: {
-                list: this.list
+                list: this.list,
+                toShort: function (s) {
+                    if (s.length < 20) {
+                        return s;
+                    }
+                    else {
+                        return s.substr(0, 20) + '...';
+                    }
+                }
             }
         });
         this.ractive.on({
