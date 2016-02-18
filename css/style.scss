@@ -257,7 +257,7 @@ body {
     }
     .name-col {
         width : 1%;
-        min-width : 100px;
+        min-width : 15em;
     }
 }
 
@@ -305,7 +305,11 @@ body {
     }
     .name-col {
         width : 1%;
-        min-width : 100px;
+        min-width : 8em;
+    }
+    .org-col {
+        width : 1%;
+        min-width : 16em;
     }
 }
 
