@@ -204,7 +204,7 @@ body {
     padding-right: 8px; }
   .companies .name-col {
     width: 1%;
-    min-width: 100px; }
+    min-width: 15em; }
 
 /* Company Detail */
 .CompanyDetail {

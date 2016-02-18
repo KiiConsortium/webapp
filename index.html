@@ -83,11 +83,11 @@
   <script id="CompanyListTemplate" type="text/ractive">
     <table class="companies card-2">
     <thead>
-      <tr><th class="name-col">Name</th><th class="name-col">URL</th><th>Description</th></tr>
+      <tr><th class="name-col">Name</th><th>Description</th></tr>
     </thead>
     <tbody>
     {{#list}}
-    <tr on-click="companyClicked:{{.}}"><td>{{name}}</td><td>{{url}}</td><td>{{toShort(description)}}</tr>
+    <tr on-click="companyClicked:{{.}}"><td>{{name}}</td><td>{{toShort(description)}}</tr>
     {{/}}
     </tbody>
     </table>
