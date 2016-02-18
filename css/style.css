@@ -238,7 +238,10 @@ body {
     padding-right: 8px; }
   .members .name-col {
     width: 1%;
-    min-width: 100px; }
+    min-width: 8em; }
+  .members .org-col {
+    width: 1%;
+    min-width: 16em; }
 
 /* Member Detail */
 .MemberDetail {
