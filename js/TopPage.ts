@@ -37,9 +37,12 @@ class TopPage implements Page {
             template : '#TopTemplate',
         });
         this.ractive.on({
-            'login' : () => {
+            login : () => {
                 this.login();
-            }
+            },
+            resetPassword : () => {
+                this.resetPassword();
+            },
         });
         this.app.setDrawerEnabled(false);
     }
@@ -54,6 +57,19 @@ class TopPage implements Page {
             }
             this.app.setCurrentAccount(account, companyList);
             this.app.navigate('/conferences');
+        });
+    }
+
+    private resetPassword() {
+        var r = this.ractive;
+        var email = r.get('resetEmail');
+        this.accountDAO.resetPassword(email, (e : any) => {
+            if (e != null) {
+                this.app.addSnack(e);
+                return;
+            }
+            r.set('resetEmail', '');
+            this.app.addSnack('Sent reset password email');
         });
     }
 }
