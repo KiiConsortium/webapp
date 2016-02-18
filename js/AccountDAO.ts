@@ -11,4 +11,5 @@ interface AccountDAO {
            description : string, callback : (e : any, account : Account) => void);
     changeEmail(email : string, callback : (e : any) => void);
     changePassword(oldPass : string, newPass : string, callback : (e : any) => void);
+    resetPassword(email : string, callback : (e : any) => void);
 }

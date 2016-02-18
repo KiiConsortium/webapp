@@ -44,8 +44,11 @@ var TopPage = (function () {
             template: '#TopTemplate'
         });
         this.ractive.on({
-            'login': function () {
+            login: function () {
                 _this.login();
+            },
+            resetPassword: function () {
+                _this.resetPassword();
             }
         });
         this.app.setDrawerEnabled(false);
@@ -61,6 +64,19 @@ var TopPage = (function () {
             }
             _this.app.setCurrentAccount(account, companyList);
             _this.app.navigate('/conferences');
+        });
+    };
+    TopPage.prototype.resetPassword = function () {
+        var _this = this;
+        var r = this.ractive;
+        var email = r.get('resetEmail');
+        this.accountDAO.resetPassword(email, function (e) {
+            if (e != null) {
+                _this.app.addSnack(e);
+                return;
+            }
+            r.set('resetEmail', '');
+            _this.app.addSnack('Sent reset password email');
         });
     };
     return TopPage;
@@ -651,6 +667,16 @@ var AccountDAOImpl = (function () {
                 callback(null);
             },
             failure: function (u, error) {
+                callback(error);
+            }
+        });
+    };
+    AccountDAOImpl.prototype.resetPassword = function (email, callback) {
+        KiiUser.resetPassword(email, {
+            success: function () {
+                callback(null);
+            },
+            failure: function (error) {
                 callback(error);
             }
         });
